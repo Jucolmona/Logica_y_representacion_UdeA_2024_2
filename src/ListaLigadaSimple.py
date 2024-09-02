@@ -35,21 +35,17 @@ class ListaLigadaSimple:
             self.cabeceraNodo.siguiente = nodoTmp
             self.nodoActual = nodoTmp
             return
-
         self.nodoActual = self.cabeceraNodo
         while self.nodoActual.siguiente is not None:
             self.nodoActual = self.nodoActual.siguiente
-
         self.nodoActual.siguiente = nodoTmp
         self.nodoActual = nodoTmp
-
         print("Se ha insertado correctamente el nodo {}".format(self.nodoActual))
     # ---------------------------------------------
     def insertarPrimero(self, val):
         nodoTmp = Nodo(val)
         nodoTmp.siguiente = self.cabeceraNodo
         self.cabeceraNodo = nodoTmp
-
         print("Se ha actualizado correctamente la cabecera del nodo: {}".format(nodoTmp))
     # ---------------------------------------------
     def imprimirLista(self):
@@ -70,6 +66,16 @@ class ListaLigadaSimple:
         return contadorTmp
     # ---------------------------------------------
     def validarNodo(self, val):
+        """
+        Función que verifica si el nodo se encuentra dentro de la lista ligada
+        según la información dada que recibe la función
+        :param val:
+                    parametro que pasa la información que se desea validar y la cual se
+                    quiere corroborar para ver si se encunetra dentro del nodo
+        :return:
+                se retorna un valor de tipo entero y binario que indica si la información
+                y por tanto el nodo de la lista se encuentra (1) o no (0)
+        """
         self.nodoActual = self.cabeceraNodo
         contadorTmp = 0
         if self.nodoActual is None:
@@ -87,6 +93,15 @@ class ListaLigadaSimple:
         return 0
     # ---------------------------------------------
     def imprimirIndex(self, val):
+        """
+        Imprime el indice de la lista según el valor o la información del nodo dado
+        :param val:
+                    información contenida dentro de un nodo de la lista y del cual se
+                    quiere recuperar el indice.
+        :return:
+                    retorna un valor de tipo entero que indica la posicion del nodo que
+                    contiene la información dada
+        """
         bandera = self.validarNodo(val)
         if bandera == 1:
             contadorTmp = 0
@@ -100,11 +115,26 @@ class ListaLigadaSimple:
             return "Elemento no encontrado en la lista"
     # ---------------------------------------------
     def llevarAUltimo(self):
+        """
+        Este método ayua a llevar el nodo actual, hasta el último nodo
+        :return:
+                no retorna ningún valor, solo cambia el estado del objeto
+        """
         while self.nodoActual.siguiente is not None:
             self.nodoActual = self.nodoActual.siguiente
-
     # ---------------------------------------------
     def informacionPorIndice(self, index):
+        """
+        Imprime la información del nodo que se encuentra en la posición dada por
+        el parámetro index, en caso de que el indice dado no exceda el tamaño de
+        la lista.
+        :param index:
+                    variable de tipo entero que representa la posición o indice del
+                    nodo que se quiere recuperar.
+        :return:
+                retorna la información contenida dentro del nodo que se posiciona
+                según el indice pasado a la función.
+        """
         tamañoTmp = self.tamañoLista()
         if index < tamañoTmp:
             contadorTmp = 0
@@ -119,6 +149,31 @@ class ListaLigadaSimple:
         else:
             return "Indice {} fuera de rango, el tamaño de la lista es {}".format(index, tamañoTmp)
     # ---------------------------------------------
+    def nodoPorIndice(self, index):
+        """
+        Recorre la lista hasta encontrar el nodo que se encuentra en la posición dada por
+        el parámetro index, en caso de que el indice dado no exceda el tamaño de
+        la lista.
+        :param index:
+                    variable de tipo entero que representa la posición o indice del
+                    nodo que se quiere recuperar.
+        :return:
+                retorna un nodo que es el que se encuentra en la posición indicada por el
+        """
+        tamañoTmp = self.tamañoLista()
+        if index < tamañoTmp:
+            contadorTmp = 0
+            self.nodoActual = self.cabeceraNodo
+            while self.nodoActual is not None:
+                if contadorTmp == index:
+                    nodoTmp = self.nodoActual
+                    self.llevarAUltimo()
+                    return nodoTmp
+                self.nodoActual = self.nodoActual.siguiente
+                contadorTmp += 1
+        else:
+            return "Indice {} fuera de rango, el tamaño de la lista es {}".format(index, tamañoTmp)
+    # ---------------------------------------------
     def imprimirMedio(self):
         tamañoTmp = self.tamañoLista()
         if tamañoTmp%2 == 0:
@@ -127,7 +182,32 @@ class ListaLigadaSimple:
         else:
             indiceMitad = tamañoTmp//2
             return self.informacionPorIndice(indiceMitad)
-
+    # ---------------------------------------------
+    def insertarDespues(self, val, index):
+        """
+         Inserta elementos de la lista (nodos) despues de un elemento dado.
+        :param val:
+                    información que se guardar en el nuevo nodo que se va a insertar
+        :param index:
+                    indice del nodo el cual apuntará hacia el nuevo nodo
+        :return:
+        """
+        nodoDado = self.nodoPorIndice(index)
+        nodoTmp = Nodo(val)
+        self.nodoActual = self.cabeceraNodo
+        if self.nodoActual is None:
+            self.nodoActual.siguiente = nodoTmp
+            self.nodoActual = nodoTmp
+            return
+        while self.nodoActual.siguiente is not None:
+            if self.nodoActual is nodoDado:
+                refNodoTmp = self.nodoActual.siguiente
+                self.nodoActual.siguiente = nodoTmp
+                self.nodoActual = self.nodoActual.siguiente
+                self.nodoActual.siguiente = refNodoTmp
+                return
+            self.nodoActual = self.nodoActual.siguiente
+    # ---------------------------------------------
     def __str__(self):
         if self.cabeceraNodo is None:
             return "HEAD --> {:<2} --> NULL".format(self.cabeceraNodo)
