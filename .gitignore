@@ -1,0 +1,17 @@
+# Ignorar archivos y carpetas específicos de PyCharm
+.idea/
+.vscode/
+__pycache__/
+*.sqlite3
+
+# Ignorar entornos virtuales
+.venv/
+env/
+venv/
+
+# Ignorar dependencias instaladas localmente
+*.egg-info/
+
+# Archivos de configuración específicos del sistema operativo
+.DS_Store
+Thumbs.db
