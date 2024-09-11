@@ -1,3 +1,9 @@
+'''
+Author: Juan Camilo Moná Luján
+Info: camilo.mona.lujan@gmail.com
+'''
+
+
 from NodoDoble import Nodo
 
 class LLD:
@@ -61,7 +67,7 @@ class LLD:
             self.recorrerListaAdelante(True)
             if self.nodoActual == nodoTmp:
                 return self.nodoActual
-        return 0;
+        return 0
 
     # -------------------------------------------
     def buscarElementoAtras(self, nodo):
@@ -75,4 +81,21 @@ class LLD:
         pass
 
     # -------------------------------------------
-    def tamaño(self): pass
+    def tamaño(self):
+        contadorTmp = 0;
+        while self._validarSiguiente():
+            self.recorrerListaAdelante(True)
+            contadorTmp += 1
+        return contadorTmp
+    # -------------------------------------------
+    def insertarPrimero(self, val):
+        nodoTmp = Nodo(val)
+        nodoTmp.siguiente = self.primerNodo
+        self.primerNodo.anterior = nodoTmp
+        self.primerNodo = nodoTmp
+    #--------------------------------------------
+    def insertarFinal(self, val):
+        nodoTmp = Nodo(val)
+        self.ultimoNodo.siguiente = nodoTmp
+        nodoTmp.anterior = self.ultimoNodo
+        self.ultimoNodo = nodoTmp
