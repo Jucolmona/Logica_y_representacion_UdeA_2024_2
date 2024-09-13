@@ -3,7 +3,6 @@ Author: Juan Camilo Moná Luján
 Info: camilo.mona.lujan@gmail.com
 '''
 
-
 from NodoDoble import Nodo
 
 class LLD:
@@ -67,7 +66,8 @@ class LLD:
             self.recorrerListaAdelante(True)
             if self.nodoActual == nodoTmp:
                 return self.nodoActual
-        return 0
+        return None
+    # --------------------------------------------
 
     # -------------------------------------------
     def buscarElementoAtras(self, nodo):
@@ -77,8 +77,9 @@ class LLD:
             self.recorrerListaAtras(True)
             if self.nodoActual == nodoTmp:
                 return self.nodoActual
-        return 0;
-        pass
+        return None
+    #--------------------------------------------
+
 
     # -------------------------------------------
     def tamaño(self):
@@ -99,3 +100,9 @@ class LLD:
         self.ultimoNodo.siguiente = nodoTmp
         nodoTmp.anterior = self.ultimoNodo
         self.ultimoNodo = nodoTmp
+    # --------------------------------------------
+    def insertarEn(self, val, index):
+        nodoTmp = Nodo(val)
+
+
+
