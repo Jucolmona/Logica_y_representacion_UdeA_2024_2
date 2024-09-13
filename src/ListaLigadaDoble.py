@@ -68,7 +68,13 @@ class LLD:
                 return self.nodoActual
         return None
     # --------------------------------------------
-
+    def buscarElementoAdelante_Index(self, index):
+        contadorTmp = 0
+        self.nodoActual = self.primerNodo
+        while contadorTmp != index:
+            self.recorrerListaAdelante(True)
+            contadorTmp += 1
+        return self.nodoActual
     # -------------------------------------------
     def buscarElementoAtras(self, nodo):
         nodoTmp = nodo
@@ -79,8 +85,13 @@ class LLD:
                 return self.nodoActual
         return None
     #--------------------------------------------
-
-
+    def buscarElementoAtras_Index(self, index):
+        contadorTmp = 0
+        self.nodoActual = self.ultimoNodo
+        while contadorTmp != index:
+            self.recorrerListaAtras(True)
+            contadorTmp += 1
+        return self.nodoActual
     # -------------------------------------------
     def tamaño(self):
         contadorTmp = 0;
