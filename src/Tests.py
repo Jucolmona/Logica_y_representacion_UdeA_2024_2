@@ -33,18 +33,16 @@ def testListaLigadaSimple():
     # print(testLista.informacionPorIndice(5))
 
 def testListaLigadaDoble(datosEntrada):
-    from NodoDoble import Nodo
+    from ListaLigadaDoble import LLD
 
-    nodoDoble = Nodo("Prueba")
+    Lld_test = LLD("Primero")
     for dato in datosEntrada:
-        pass
+        Lld_test.insertarFinal(dato)
+    Lld_test.imprimirListaAdelante()
+    Lld_test.imprimirListaAtras()
 
 
-
-
-
-    print(nodoDoble)
-
-testListaLigadaDoble()
+datosEntrada = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K")
+testListaLigadaDoble(datosEntrada)
 
 

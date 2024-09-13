@@ -36,28 +36,26 @@ class LLD:
         self._ultimoNodo = nodo
 
     #_______ MÉTODOS PROPIOS DE LA CLASE ________
+    def _validarPrimero(self):
+        return True if self.primerNodo is None else True
     # -------------------------------------------
     def _validarAnterior(self):
-        return True if self.nodoActual.anterior is None else False
-
+        return False if self.nodoActual.anterior is None else True
     # -------------------------------------------
     def _validarSiguiente(self):
-        return True if self.nodoActual.siguiente is None else False
-
+        return False if self.nodoActual.siguiente is None else True
     # -------------------------------------------
     def recorrerListaAdelante(self, bandera = False):
         if bandera:
             self.nodoActual = self.nodoActual.siguiente
         while self._validarSiguiente():
             self.nodoActual = self.nodoActual.siguiente
-
     # -------------------------------------------
     def recorrerListaAtras(self, bandera = False):
         if bandera:
             self.nodoActual = self.nodoActual.anterior
         while self._validarAnterior():
             self.nodoActual = self.nodoActual.anterior
-
     #-------------------------------------------
     def buscarElementoAdelante(self, nodo):
         nodoTmp = nodo
@@ -108,12 +106,34 @@ class LLD:
     #--------------------------------------------
     def insertarFinal(self, val):
         nodoTmp = Nodo(val)
-        self.ultimoNodo.siguiente = nodoTmp
-        nodoTmp.anterior = self.ultimoNodo
-        self.ultimoNodo = nodoTmp
+        if self._validarPrimero():
+            self.primerNodo.siguiente = nodoTmp
+        else:
+            self.ultimoNodo.siguiente = nodoTmp
+            nodoTmp.anterior = self.ultimoNodo
+            self.ultimoNodo = nodoTmp
     # --------------------------------------------
     def insertarEn(self, val, index):
         nodoTmp = Nodo(val)
-
-
-
+        self.nodoActual = self.buscarElementoAdelante_Index(index - 1)
+        nodoTmp.anterior = self.nodoActual
+        nodoTmp.siguiente = self.nodoActual.siguiente
+        self.nodoActual.siguiente.anterior = nodoTmp
+        self.nodoActual.siguiente = nodoTmp
+    # --------------------------------------------
+    def imprimirListaAdelante(self):
+        self.nodoActual = self.primerNodo
+        print('|{:<10} | {:<15}| {:<15}|'.format('VALOR', 'ANTERIOR', 'SIGUIENTE'))
+        while self._validarSiguiente():
+            print('|{:<10} | {:<10}| {:<10}|'.format(self.nodoActual.informacion,
+                                                     id(self.nodoActual.anterior),
+                                                     id(self.nodoActual.siguiente)))
+            self.recorrerListaAdelante(True)
+    # --------------------------------------------
+    def imprimirListaAtras(self):
+        self.nodoActual = self.ultimoNodo
+        print('|{:<10} | {:<15}| {:<15}|'.format('VALOR', 'ANTERIOR', 'SIGUIENTE'))
+        while self._validarAnterior():
+            print('|{:<10} | {:<10}| {:<10}|'.format(self.nodoActual.informacion,
+                                                     id(self.nodoActual.anterior), id(self.nodoActual.siguiente)))
+            self.recorrerListaAtras(True)
