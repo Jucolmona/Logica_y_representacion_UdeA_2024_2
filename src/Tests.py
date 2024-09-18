@@ -1,36 +1,40 @@
 def testListaLigadaSimple():
-    from ListaLigadaSimple import ListaLigadaSimple
-    testLista = ListaLigadaSimple("valor 1")
-    testLista.insertar("Valor 2")
-    testLista.insertar("Valor 3")
-    testLista.insertar("Valor 4")
-    testLista.insertar("Valor 5")
-    testLista.insertar("Valor 6")
-    testLista.insertar("Valor 7")
-    testLista.insertar("Valor 8")
-    testLista.insertar("Valor 9")
-    testLista.insertar("Valor 10")
+    from ListaLigadaSimple import LLS
+    testLista = LLS("valor 1")
+    datos = ("Valor 2", "Valor 3", "Valor 4", "Valor 5", "Valor 6", "Valor 7", "Valor 8", "Valor 9", "Valor 10")
+    for dato in datos:
+        testLista.insertar(dato)
 
-    print(testLista.cabeceraNodo.informacion)
-    print(id(testLista.cabeceraNodo))
+    print(testLista.primerNodo.informacion)
+    print(id(testLista.primerNodo))
 
     testLista.imprimirLista()
 
-    # testLista.nodoActual = testLista.cabeceraNodo
-    # testLista.llevarAUltimo()
-    # print(testLista.nodoActual)
-    # print(testLista)
+    print('-------------- TEST INSERTAR PRIMERO -----------------')
     testLista.insertarPrimero("valor 11")
     print("Despues de insertar primero")
     testLista.imprimirLista()
+    print('-------------- TEST INSERTAR DESPUES -----------------')
     testLista.insertarDespues("Valor K", 5)
     print("Despues de insertar en medio")
     testLista.imprimirLista()
-    # print(testLista)
-    # print(testLista.tamañoLista())
-    # print(testLista.validarNodo("Valor 7"))
-    # print(testLista.imprimirIndex("Valor 7"))
-    # print(testLista.informacionPorIndice(5))
+
+    print('-------------- TEST TAMAÑO DE LSITA -----------------')
+    print(testLista.tamanoLista())    # print(testLista)
+
+    print('-------------- TEST NODO POR INDICE -----------------')
+    print(testLista.nodoPorIndice(5))
+
+    print('-------------- TEST VALIDAR NODO -----------------')
+    print(testLista.validarNodo("Valor 7"))
+    print(testLista.validarNodo("Valor 11"))
+
+    print('-------------- TEST IMPRIMIR INDICE -----------------')
+    print(testLista.imprimirIndex("Valor 7"))
+
+    print('-------------- TEST INFORMACION POR INDICE -----------------')
+    print(testLista.informacionPorIndice(5))
+    print(testLista.informacionPorIndice(15))
 
 def testListaLigadaDoble(datosEntrada):
     from ListaLigadaDoble import LLD
@@ -42,7 +46,7 @@ def testListaLigadaDoble(datosEntrada):
     Lld_test.imprimirListaAtras()
 
 
-datosEntrada = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K")
-testListaLigadaDoble(datosEntrada)
-
+#datosEntrada = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K")
+#testListaLigadaDoble(datosEntrada)
+testListaLigadaSimple()
 
