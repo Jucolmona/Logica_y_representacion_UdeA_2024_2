@@ -271,14 +271,6 @@ class LLSC:
     def primerNodo(self, nodo):
         self._primerNodo = nodo
 
-    #-------------------------------------------------------
-    def __str__(self):
-        if self.nodoCabecera.siguiente.informacion == self.nodoCabecera.informacion:
-            return f'[{self.nodoCabecera.informacion}, Apunta a {self.nodoCabecera.siguiente.informacion}]'
-        else:
-            return (f'[{self.nodoCabecera.informacion}, Apunta a {self.nodoCabecera.siguiente.informacion}] ---> '
-                f'[{self.primerNodo.informacion}, Apunta a {self.primerNodo.siguiente.informacion}]')
-
     # ------- MÉTODOS PROPIOS DE LA CLASE ---------
     # ---------------------------------------------
     # ---------- MÉTODOS AUXILIARES ---------------
@@ -289,4 +281,22 @@ class LLSC:
     # ---------------------------------------------
 
     def insertar(self, val):
-        pass
+        self.primerNodo = Nodo(val)
+        self.nodoCabecera.siguiente = self.primerNodo
+        self.primerNodo.siguiente = self.nodoCabecera
+
+    def insertarAlPrincipio(self, val):
+        nodoAux = Nodo(val)
+        self.nodoCabecera.siguiente = nodoAux
+        nodoAux.siguiente = self.primerNodo
+        self.primerNodo = nodoAux
+
+#-------------------------------------------------------
+    def __str__(self):
+        if self.nodoCabecera.siguiente.informacion == self.nodoCabecera.informacion:
+            return f'[{self.nodoCabecera.informacion}, Apunta a {self.nodoCabecera.siguiente.informacion}]'
+        else:
+            while self.nodoCabecera.siguiente.informacion != self.nodoCabecera.informacion:
+                return (f'[{self.nodoCabecera.informacion}, Apunta a {self.nodoCabecera.siguiente.informacion}] ---> '
+                f'[{self.primerNodo.informacion}, Apunta a {self.primerNodo.siguiente.informacion}]')
+            

@@ -57,7 +57,15 @@ def testListaLigadaCircular():
     print(listaCircularVacia.primerNodo.informacion)
     print(listaCircularVacia)
 
+    listaCircularVacia.insertar("Valor A")
+    print(listaCircularVacia.nodoCabecera.informacion)
+    print(listaCircularVacia.primerNodo.informacion)
+    print(listaCircularVacia)
 
+    listaCircularVacia.insertarAlPrincipio("Valor B")
+    print(listaCircularVacia.nodoCabecera.informacion)
+    print(listaCircularVacia.primerNodo.informacion)
+    print(listaCircularVacia)
 
 #datosEntrada = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K")
 #testListaLigadaDoble(datosEntrada)
