@@ -45,8 +45,22 @@ def testListaLigadaDoble(datosEntrada):
     Lld_test.imprimirListaAdelante()
     Lld_test.imprimirListaAtras()
 
+def testListaLigadaCircular():
+    from ListaLigadaSimple import LLSC
+
+    listaCircular = LLSC("Valor 1")
+    print(listaCircular.nodoCabecera.informacion)
+    print(listaCircular.primerNodo.informacion)
+    print(listaCircular)
+    listaCircularVacia = LLSC(val=None)
+    print(listaCircularVacia.nodoCabecera.informacion)
+    print(listaCircularVacia.primerNodo.informacion)
+    print(listaCircularVacia)
+
+
 
 #datosEntrada = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K")
 #testListaLigadaDoble(datosEntrada)
-testListaLigadaSimple()
+#testListaLigadaSimple()
 
+testListaLigadaCircular()

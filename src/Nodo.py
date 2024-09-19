@@ -24,7 +24,6 @@ class Nodo:
     def siguiente(self, nodo):
         self._siguiente = nodo
 
-    def __str__(self):
-        return "Informacion >> {} | Apuntador >> {}".format(self.informacion, self.siguiente)
+
 
 

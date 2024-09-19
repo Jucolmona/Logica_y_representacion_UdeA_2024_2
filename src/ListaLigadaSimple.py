@@ -243,3 +243,50 @@ class LLS:
                                                                         self.primerNodo.siguiente.informacion,
                                                                         self.imprimirMedio(),
                                                                         self.nodoActual.informacion)
+
+
+class LLSC:
+    """
+    A partir de esta clase se crea la una Lista Ligada Simple Circular, partiendo de la clase
+    Nodo.
+    """
+    def __init__(self, val=None):
+        self._nodoCabecera = Nodo("CAB")
+        self._primerNodo = Nodo(val)
+        if val == None:
+            self._nodoCabecera.siguiente = self.nodoCabecera         # Definición de lista vacia
+        else:
+            self._nodoCabecera.siguiente = self.primerNodo
+            self._primerNodo.siguiente = self.nodoCabecera
+
+    @property
+    def nodoCabecera(self):
+        return self._nodoCabecera
+
+    @property
+    def primerNodo(self):
+        return self._primerNodo
+
+    @primerNodo.setter
+    def primerNodo(self, nodo):
+        self._primerNodo = nodo
+
+    #-------------------------------------------------------
+    def __str__(self):
+        if self.nodoCabecera.siguiente.informacion == self.nodoCabecera.informacion:
+            return f'[{self.nodoCabecera.informacion}, Apunta a {self.nodoCabecera.siguiente.informacion}]'
+        else:
+            return (f'[{self.nodoCabecera.informacion}, Apunta a {self.nodoCabecera.siguiente.informacion}] ---> '
+                f'[{self.primerNodo.informacion}, Apunta a {self.primerNodo.siguiente.informacion}]')
+
+    # ------- MÉTODOS PROPIOS DE LA CLASE ---------
+    # ---------------------------------------------
+    # ---------- MÉTODOS AUXILIARES ---------------
+    # ---------------------------------------------
+
+    # ---------------------------------------------
+    # ---------- PROCESAMIENTO DE LLSC -------------
+    # ---------------------------------------------
+
+    def insertar(self, val):
+        pass
